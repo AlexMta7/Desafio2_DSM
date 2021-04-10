@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Farmacia SALESIANA</string>
+    <string name="SaludoA1">BIENVENIDO A SU FARMACIA SALESIANA.</string>
+    <string name="InstruccionA1">Elija el medicamento que desea comprar:</string>
+    <string name="SaludoA2">ORDEN DE FACTURA.</string>
+    <string name="Saludo3">Historial de Compras.</string>
+    <string name="Text_btn">Comprar</string>
+    <string name="Titulo_table">PRODUCTO</string>
+    <string name="Titulo_table1">SUBTOTAL</string>
+    <string name="Desc">Descuento</string>
+    <string name="Total">TOTAL: </string>
+</resources>
