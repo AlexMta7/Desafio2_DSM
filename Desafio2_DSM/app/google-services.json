@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "594004104643",
+    "project_id": "desafio2dsm-99931",
+    "storage_bucket": "desafio2dsm-99931.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:594004104643:android:bff7c39b02f8955d8f9976",
+        "android_client_info": {
+          "package_name": "sv.edu.udb.app_farmacia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "594004104643-0dp1e1d8j3tdqf5u71gq7e2jfggfkh34.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sv.edu.udb.app_farmacia",
+            "certificate_hash": "9438c3462abdcb08a5f4220bd893972850ec1b69"
+          }
+        },
+        {
+          "client_id": "594004104643-hjvrc66l9or1v9r6cnd3r4f12mdhn1n6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxIXZk01r0u-s3b7vRudcw9KJ7d4Pyw9E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "594004104643-hjvrc66l9or1v9r6cnd3r4f12mdhn1n6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
