@@ -14,25 +14,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class Register_Activity extends AppCompatActivity {
 
     private EditText mEditTextName;
     private EditText mEditTextEmail;
     private EditText mEditTextPass;
-    private Button mButtonRegister;
 
-    //Variables de los datos a registrar
-    private String name = "";
-    private String email = "";
-    private String password = "";
-
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
     DatabaseReference mDatabase;
 
     @Override
@@ -41,64 +32,56 @@ public class Register_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         mEditTextName = (EditText) findViewById(R.id.editTextName);
         mEditTextEmail = (EditText) findViewById(R.id.editTextEmail);
         mEditTextPass = (EditText) findViewById(R.id.editTextPass);
-
-        mButtonRegister.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                name = mEditTextName.getText().toString();
-                email = mEditTextEmail.getText().toString();
-                password = mEditTextPass.getText().toString();
-
-                if(!name.isEmpty() && !email.isEmpty() && !password.isEmpty()){
-                    if (password.length() >= 6){
-                        registerUser();
-                    }
-                    else {
-                        //Toast.makeText( context: Register_Activity.this, text:"El Password debe de tener al menos 6 caracteres.", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-                else {
-                    //Toast.makeText( Context: Register_Activity.this, text: "Debe de completar estos campos", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
-    private void registerUser(){
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    Map<String, Object> map = new HashMap<>();
-                    map.put("name", name);
-                    map.put("email", email);
-                    map.put("pass", password);
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //updateUI(currentUser);
+    }
 
-                    String id = mAuth.getCurrentUser().getUid();
+    public void registrarUser(View view){
 
-                    mDatabase.child("Users").child(id).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>(){
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task2){
-                            if (task2.isSuccessful()){
-                                startActivity(new Intent(Register_Activity.this, MainActivity.class));
-                                finish();
-                            }
-                            else{
-                                // Toast.makeText( Context: Register_Activity.this, text: "No se pudieorn crear los datos correctamente", Toast.LENGTH_SHORT).show();
-                            }
+        String email = mEditTextEmail.getText().toString();
+        String password = mEditTextPass.getText().toString();
+        String name = mEditTextName.getText().toString();
+
+        //Validaciones de campos
+        if(!name.isEmpty() && !email.isEmpty() && !password.isEmpty()){
+            if (password.length() >= 6){
+                //Registramos el usuario
+                mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Toast.makeText(getApplicationContext(),"Usuario Creado",Toast.LENGTH_SHORT).show();
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                            startActivity(intent);
+                            //updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+
+                            Toast.makeText(getApplicationContext(), "Fallo la Autenticación.",
+                                    Toast.LENGTH_SHORT).show();
+                            //updateUI(null);
                         }
-                    });
-                }
-                else{
-                   // Toast.makeText( Context: Register_Activity.this, text: "No se pudo registrar este usuario", Toast.LENGTH_SHORT).show();
-                }
+                    }
+                });
             }
-        });
+            else {
+                Toast.makeText( this, "El Password debe de tener al menos 6 caracteres.", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else {
+            Toast.makeText( this,  "Debe de completar estos campos", Toast.LENGTH_SHORT).show();
+        }
     }
 }

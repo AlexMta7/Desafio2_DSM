@@ -12,13 +12,12 @@
         android:id="@+id/textView3"
         android:layout_width="118dp"
         android:layout_height="31dp"
-        android:layout_marginTop="44dp"
         android:text="Registrase"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.109"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" /><![CDATA[
+        app:layout_constraintTop_toBottomOf="@+id/btnLoginBack" /><![CDATA[
 
     />
 
@@ -59,6 +58,7 @@
         android:ems="10"
         android:hint="example@email.com"
         android:inputType="textPersonName"
+        android:password="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,11 +92,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="184dp"
+        android:onClick="registrarUser"
         android:text="Registrase"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPass" />
+
+    <ImageButton
+        android:id="@+id/btnLoginBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/abc_vector_test" />
     <!--
         <Button
             android:id="@+id/button2"
