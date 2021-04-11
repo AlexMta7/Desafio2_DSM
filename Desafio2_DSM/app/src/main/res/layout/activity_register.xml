@@ -44,7 +44,7 @@
         android:backgroundTint="@color/design_default_color_primary"
         android:ems="10"
         android:hint="Contraseña"
-        android:inputType="textPersonPass"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
